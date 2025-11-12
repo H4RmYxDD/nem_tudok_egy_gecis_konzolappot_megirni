@@ -1,0 +1,1 @@
+# nem_tudok_egy_gecis_konzolappot_megirni
