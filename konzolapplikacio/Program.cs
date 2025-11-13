@@ -3,11 +3,10 @@
 List<string> data = new List<string>();
 
 var lines = File.ReadAllLines("vizibicikli.csv").Skip(1);
-List<int> futas = new List<int>();
-TimeSpan mennyitMent = TimeSpan.Zero;
-    var biciklik = new List<Bicikli>();
-double osszesKereset = 0;
 
+TimeSpan mennyitMent = TimeSpan.Zero;
+
+var biciklik = new List<Bicikli>();
 
 foreach (var l in lines)
 {
@@ -36,7 +35,10 @@ foreach (var l in lines)
 var groupedBiciklik = biciklik.GroupBy(x=> x.Type).Select(g=>new {id=g.Key, fizetendo = g.Sum(b=>b.osszeg)});
 var legtobb = groupedBiciklik.MaxBy(x=>x.fizetendo);
 Console.WriteLine("a legtobbet keresett bicikli:" + legtobb);
+
 Console.WriteLine("melyik bicikli adatait szeretne lekerni?");
 var keresendo = Console.ReadLine().ToUpper();
+
 var talalat = groupedBiciklik.FirstOrDefault(a=>a.id.Equals(keresendo));
+
 Console.WriteLine(talalat);
